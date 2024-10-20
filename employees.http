@@ -35,3 +35,19 @@ DELETE {{host}}/employees/3
 
 ### INCORRECTLY Delete employee
 DELETE {{host}}/employees/212
+
+### Update Employee
+PUT {{host}}/employees/1
+Content-Type: application/json
+
+{
+    "name": "newGuy"
+}
+
+### INCORRECTLY Update Employee
+PUT {{host}}/employees/1
+Content-Type: application/json
+
+{
+    "name": 
+}

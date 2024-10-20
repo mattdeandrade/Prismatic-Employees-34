@@ -55,3 +55,27 @@ router.delete("/:id", async (req, res, next) => {
     next(e);
   }
 });
+
+router.put("/:id", async (req, res, next) => {
+  const { id } = req.params;
+  const { name } = req.body;
+  if (!name || !isNaN(name))
+    return next({ status: 400, message: "An updated name must be provided" });
+  try {
+    const employee = await prisma.employee.findUnique({ where: { id: +id } });
+    if (!employee) {
+      return next({
+        status: 404,
+        message: `An employee with id:${id} does not exist to update.`,
+      });
+    } else {
+      const updatedEmployee = await prisma.employee.update({
+        where: { id: +id },
+        data: { name },
+      });
+      res.status(201).json(updatedEmployee);
+    }
+  } catch (e) {
+    next(e);
+  }
+});
