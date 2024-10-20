@@ -1,0 +1,37 @@
+@host=http://localhost:3000
+
+### Get message
+GET {{host}}/
+
+### Get all Employees
+GET {{host}}/employees
+
+### Get Employee with id:
+GET {{host}}/employees/4
+
+### Get non-existent Employee with id:
+GET {{host}}/employees/25
+
+### Post new Employee
+POST {{host}}/employees
+Content-Type: application/json
+
+{
+"name": "matt"
+}
+
+### INCORRECTLY Post new Employee
+POST {{host}}/employees
+Content-Type: application/json
+
+{
+"name": 21
+}
+
+
+### Delete employee
+DELETE {{host}}/employees/3
+
+
+### INCORRECTLY Delete employee
+DELETE {{host}}/employees/212
